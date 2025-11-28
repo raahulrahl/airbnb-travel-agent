@@ -1,7 +1,17 @@
-"""
-An intelligent AI-powered travel assistant that helps users discover and plan their perfect accommodations using real-time Airbnb listings and Google Maps location data.
+# |---------------------------------------------------------|
+# |                                                         |
+# |                 Give Feedback / Get Help                |
+# | https://github.com/getbindu/Bindu/issues/new/choose    |
+# |                                                         |
+# |---------------------------------------------------------|
+#
+#  Thank you users! We ❤️ you! - 🌻
 
-Bindu Agent Entry Point
+"""Bindu Agent Entry Point.
+
+An intelligent AI-powered travel assistant that helps users discover and plan
+their perfect accommodations using real-time Airbnb listings and Google Maps
+location data.
 """
 
 import argparse
@@ -12,25 +22,21 @@ from pathlib import Path
 from textwrap import dedent
 from typing import Any
 
-
 from agno.agent import Agent
 from agno.models.openrouter import OpenRouter
 from agno.tools.mcp import MultiMCPTools
-
-
 from bindu.penguin.bindufy import bindufy
 
-
 # Global MCP tools instances
-mcp_tools = None  # MultiMCPTools instance
-agent = None
-model_name = None
-api_key = None
+mcp_tools: MultiMCPTools | None = None
+agent: Agent | None = None
+model_name: str | None = None
+api_key: str | None = None
 _initialized = False
 _init_lock = asyncio.Lock()
 
 
-async def initialize_mcp_tools(env: dict = None):
+async def initialize_mcp_tools(env: dict | None = None):
     """Initialize and connect to MCP servers.
 
     Args:
@@ -45,7 +51,7 @@ async def initialize_mcp_tools(env: dict = None):
             "npx -y @openbnb/mcp-server-airbnb --ignore-robots-txt",
             "npx -y @modelcontextprotocol/server-google-maps",
         ],
-        env=env or os.environ,  # Use provided env or fall back to os.environ
+        env=env or dict(os.environ),  # Convert os.environ to dict
         allow_partial_failure=True,  # Don't fail if one server is unavailable
         timeout_seconds=30,
     )
@@ -60,22 +66,26 @@ def load_config() -> dict:
     # Get path to agent_config.json in project root
     config_path = Path(__file__).parent / "agent_config.json"
 
-    with open(config_path, "r") as f:
+    with open(config_path) as f:
         return json.load(f)
 
 
 # Create the agent instance
 async def initialize_agent():
     """Initialize the agent once."""
-    global agent, model_name, mcp_tools
+    global agent, model_name, mcp_tools, api_key
+
+    if not model_name:
+        raise ValueError("model_name not set")
+    if not api_key:
+        raise ValueError("api_key not set")
+    if not mcp_tools:
+        raise ValueError("mcp_tools not initialized")
 
     agent = Agent(
-        name=f"Airbnb Bindu Agent",
-        model=OpenRouter(
-            id=model_name,
-            api_key=api_key
-        ),
-        tools=[mcp_tools],  # MultiMCPTools instance
+        name="Airbnb Bindu Agent",
+        model=OpenRouter(id=model_name, api_key=api_key),
+        tools=[mcp_tools],
         instructions=dedent("""\
             You are a helpful AI assistant with access to multiple capabilities including:
             - Airbnb search for accommodations and listings
@@ -121,7 +131,6 @@ async def handler(messages: list[dict[str, str]]) -> Any:
     Returns:
         Agent response (ManifestWorker will handle extraction)
     """
-    
     # Run agent with messages
     global _initialized
 
@@ -132,18 +141,19 @@ async def handler(messages: list[dict[str, str]]) -> Any:
             # Build environment with API keys
             env = {
                 **os.environ,
-                #"GOOGLE_MAPS_API_KEY": os.getenv("GOOGLE_MAPS_API_KEY", ""),
+                # "GOOGLE_MAPS_API_KEY": os.getenv("GOOGLE_MAPS_API_KEY", ""),
             }
             await initialize_all(env)
             _initialized = True
 
     # Run the async agent
+    if not agent:
+        raise RuntimeError("Agent not initialized")
     result = await agent.arun(messages)
     return result
-    
 
 
-async def initialize_all(env: dict = None):
+async def initialize_all(env: dict | None = None):
     """Initialize MCP tools and agent.
 
     Args:
@@ -175,6 +185,10 @@ if __name__ == "__main__":
     # Set global model name and API key
     model_name = args.model
     api_key = args.api_key
+
+    if not api_key:
+        raise ValueError("OPENROUTER_API_KEY required")
+
     print(f"🤖 Using model: {model_name}")
 
     # Load configuration

@@ -100,5 +100,5 @@ uvx cookiecutter https://github.com/getbindu/create-bindu-agent.git
 <p align="center">
   <a href="https://github.com/getbindu/create-bindu-agent">⭐ Star us on GitHub</a> •
   <a href="https://discord.gg/3w5zuYUuwt">💬 Join Discord</a> •
-  <a href="https://docs.getbindu">📚 Read the Docs</a>
+  <a href="https://docs.getbindu.com">📚 Read the Docs</a>
 </p>

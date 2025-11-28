@@ -10,7 +10,7 @@ dependencies = [
     "bindu==2025.48.6.1",
     "agno>=2.2.0",
     "fastmcp>=2.11.0",
-    
+
     "requests>=2.31.0",
     "pyperclip>=1.8.0",
     "rich>=13.0.0",
@@ -102,6 +102,8 @@ ignore = [
     "E501",
     # DoNotAssignLambda
     "E731",
+    # Avoid specifying long messages outside the exception class
+    "TRY003",
 ]
 
 [tool.ruff.lint.per-file-ignores]
@@ -116,3 +118,7 @@ skip_empty = true
 [tool.coverage.run]
 branch = true
 source = ["airbnb_travel_agent"]
+
+[tool.pydocstyle]
+convention = "google"
+add-ignore = ["D100", "D104"]
