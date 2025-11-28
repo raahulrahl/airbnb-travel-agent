@@ -6,17 +6,17 @@
 
 <br/>
 
-[![Build status](https://img.shields.io/github/actions/workflow/status/raahulmona/airbnb-travel-agent/main.yml?branch=main)](https://github.com/raahulmona/airbnb-travel-agent/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/raahulmona/airbnb-travel-agent/branch/main/graph/badge.svg)](https://codecov.io/gh/raahulmona/airbnb-travel-agent)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/raahulmona/airbnb-travel-agent)](https://img.shields.io/github/commit-activity/m/raahulmona/airbnb-travel-agent)
-[![License](https://img.shields.io/github/license/raahulmona/airbnb-travel-agent)](https://img.shields.io/github/license/raahulmona/airbnb-travel-agent)
+[![Build status](https://img.shields.io/github/actions/workflow/status/raahulrahl/airbnb-travel-agent/main.yml?branch=main)](https://github.com/raahulrahl/airbnb-travel-agent/actions/workflows/main.yml?query=branch%3Amain)
+[![codecov](https://codecov.io/gh/raahulrahl/airbnb-travel-agent/branch/main/graph/badge.svg)](https://codecov.io/gh/raahulrahl/airbnb-travel-agent)
+[![Commit activity](https://img.shields.io/github/commit-activity/m/raahulrahl/airbnb-travel-agent)](https://img.shields.io/github/commit-activity/m/raahulrahl/airbnb-travel-agent)
+[![License](https://img.shields.io/github/license/raahulrahl/airbnb-travel-agent)](https://img.shields.io/github/license/raahulrahl/airbnb-travel-agent)
 
 <br/>
 
 An intelligent AI-powered travel assistant that helps users discover and plan their perfect accommodations using real-time Airbnb listings and Google Maps location data.
 
-- **Github repository**: <https://github.com/raahulmona/airbnb-travel-agent/>
-- **Documentation**: <https://raahulmona.github.io/airbnb-travel-agent/>
+- **Github repository**: <https://github.com/raahulrahl/airbnb-travel-agent/>
+- **Documentation**: <https://raahulrahl.github.io/airbnb-travel-agent/>
 
 <br/>
 
@@ -30,7 +30,7 @@ First, create a repository on GitHub with the same name as this project, and the
 git init -b main
 git add .
 git commit -m "init commit"
-git remote add origin git@github.com:raahulmona/airbnb-travel-agent.git
+git remote add origin git@github.com:raahulrahl/airbnb-travel-agent.git
 git push -u origin main
 ```
 

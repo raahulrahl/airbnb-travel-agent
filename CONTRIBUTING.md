@@ -9,7 +9,7 @@ You can contribute in many ways:
 
 ## Report Bugs
 
-Report bugs at https://github.com/raahulmona/airbnb-travel-agent/issues
+Report bugs at https://github.com/raahulrahl/airbnb-travel-agent/issues
 
 If you are reporting a bug, please include:
 
@@ -33,7 +33,7 @@ airbnb-travel-agent could always use more documentation, whether as part of the 
 
 ## Submit Feedback
 
-The best way to send feedback is to file an issue at https://github.com/raahulmona/airbnb-travel-agent/issues.
+The best way to send feedback is to file an issue at https://github.com/raahulrahl/airbnb-travel-agent/issues.
 
 If you are proposing a new feature:
 

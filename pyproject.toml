@@ -24,9 +24,9 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://raahulmona.github.io/airbnb-travel-agent/"
-Repository = "https://github.com/raahulmona/airbnb-travel-agent"
-Documentation = "https://raahulmona.github.io/airbnb-travel-agent/"
+Homepage = "https://raahulrahl.github.io/airbnb-travel-agent/"
+Repository = "https://github.com/raahulrahl/airbnb-travel-agent"
+Documentation = "https://raahulrahl.github.io/airbnb-travel-agent/"
 
 [dependency-groups]
 dev = [

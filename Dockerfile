@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.title="airbnb-travel-agent"
 LABEL org.opencontainers.image.description="An intelligent AI-powered travel assistant that helps users discover and plan their perfect accommodations using real-time Airbnb listings and Google Maps location data."
 LABEL org.opencontainers.image.authors="raahul dutta <raahul@getbindu.com>"
 LABEL org.opencontainers.image.version="1.0.0"
-LABEL org.opencontainers.image.source="https://github.com/raahulmona/airbnb-travel-agent"
+LABEL org.opencontainers.image.source="https://github.com/raahulrahl/airbnb-travel-agent"
 LABEL org.opencontainers.image.licenses="MIT"
 
 ARG nodejs_canonical="22.12.0"
