@@ -1,0 +1,27 @@
+services:
+  airbnb_travel_agent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: airbnb_travel_agent
+    ports:
+      - "3773:3773"
+    environment:
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      
+
+    env_file:
+      - .env
+    volumes:
+      - ./airbnb_travel_agent:/app/airbnb_travel_agent
+      - ./agent_config.json:/app/agent_config.json
+    restart: unless-stopped
+    networks:
+      - airbnb_travel_agent-network
+    
+
+networks:
+  airbnb_travel_agent-network:
+    driver: bridge
+
+

@@ -1,0 +1,61 @@
+id: airbnb-booking-v1
+name: airbnb-booking
+version: 1.0.0
+author: raahul@getbindu.com
+
+# Description
+description: |
+  An intelligent AI-powered travel assistant that helps users discover and plan their perfect accommodations 
+  using real-time Airbnb listings and Google Maps location data. This skill enables searching for properties, 
+  comparing listings, and providing detailed accommodation information based on user preferences.
+
+# Tags and Modes
+tags:
+  - airbnb-booking
+  - travel
+  - accommodation
+  - property-search
+  - vacation-rental
+  - google-maps
+  - location-services
+
+input_modes:
+  - text/plain
+  - application/json
+
+output_modes:
+  - text/plain
+  - application/json
+
+# Example Queries
+examples:
+  - "Find me a 2-bedroom apartment in Paris for next weekend"
+  - "Search for pet-friendly Airbnb listings in San Francisco with a budget of $150 per night"
+  - "Show me beachfront properties in Miami for 5 guests from Dec 15-20"
+  - "What are the best-rated Airbnb listings near Times Square?"
+  - "Find accommodations in Tokyo with WiFi and kitchen for a week"
+
+# Requirements
+requirements:
+  packages:
+    - agno
+    - bindu
+  system:
+    - nodejs
+    - npx
+  min_memory_mb: 512
+  external_services:
+    - "@openbnb/mcp-server-airbnb"
+    - "@modelcontextprotocol/server-google-maps"
+
+# Performance Metrics
+performance:
+  avg_processing_time_ms: 2000
+  max_concurrent_requests: 5
+  memory_per_request_mb: 512
+  scalability: horizontal
+
+# Tool Restrictions
+allowed_tools:
+  - mcp_airbnb_search
+  - mcp_google_maps

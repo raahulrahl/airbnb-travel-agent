@@ -1,0 +1,52 @@
+site_name: airbnb-travel-agent
+repo_url: https://github.com/raahulmona/airbnb-travel-agent
+site_url: https://raahulmona.github.io/airbnb-travel-agent
+site_description: An intelligent AI-powered travel assistant that helps users discover and plan their perfect accommodations using real-time Airbnb listings and Google Maps location data.
+site_author: raahul dutta
+edit_uri: edit/main/docs/
+repo_name: raahulmona/airbnb-travel-agent
+copyright: Maintained by <a href="https://raahulmona.com">raahulmona</a>.
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["src/airbnb_travel_agent"]
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/raahulmona/airbnb-travel-agent
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/airbnb-travel-agent
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
