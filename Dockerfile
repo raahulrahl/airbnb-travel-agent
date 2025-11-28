@@ -1,4 +1,4 @@
-FROM ghcr.io/astral-sh/uv:alpine AS builder
+FROM ghcr.io/astral-sh/uv:bookworm AS builder
 
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 ENV UV_PYTHON_INSTALL_DIR=/python
@@ -17,9 +17,9 @@ ADD . /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev
 
-FROM node:22-alpine AS node-base
+FROM node:22-bookworm-slim AS node-base
 
-FROM alpine:3.19
+FROM debian:bookworm-slim
 
 # OCI labels
 LABEL org.opencontainers.image.title="airbnb-travel-agent"
@@ -43,6 +43,7 @@ COPY --from=builder /app /app
 
 # Add Python and venv to PATH
 ENV PATH="/python/bin:/app/.venv/bin:$PATH"
+
 
 # Use /app as the working directory
 WORKDIR /app

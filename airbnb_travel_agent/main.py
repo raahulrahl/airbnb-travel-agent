@@ -33,6 +33,7 @@ mcp_tools: MultiMCPTools | None = None
 agent: Agent | None = None
 model_name: str | None = None
 api_key: str | None = None
+mem0_api_key: str | None = None
 _initialized = False
 _init_lock = asyncio.Lock()
 
@@ -74,7 +75,7 @@ def load_config() -> dict:
 # Create the agent instance
 async def initialize_agent():
     """Initialize the agent once."""
-    global agent, model_name, mcp_tools, api_key
+    global agent, model_name, mcp_tools, api_key, mem0_api_key
 
     if not model_name:
         raise ValueError("model_name not set")
@@ -82,6 +83,11 @@ async def initialize_agent():
         raise ValueError("api_key not set")
     if not mcp_tools:
         raise ValueError("mcp_tools not initialized")
+    if not mem0_api_key:
+        raise ValueError("MEM0_API_KEY not set. Get your API key from: https://app.mem0.ai/dashboard/api-keys")
+
+    # Set Mem0 API key in environment for Mem0Tools
+    os.environ["MEM0_API_KEY"] = mem0_api_key
 
     agent = Agent(
         name="Airbnb Bindu Agent",
@@ -91,7 +97,12 @@ async def initialize_agent():
             "providing location insights via Google Maps, and remembering user preferences for personalized recommendations."
         ),
         model=OpenRouter(id=model_name, api_key=api_key),
-        tools=[mcp_tools, Mem0Tools()],
+        tools=[
+            mcp_tools,
+            Mem0Tools(
+                api_key=mem0_api_key
+            )
+        ],
         instructions=dedent("""\
             You are a helpful AI assistant with access to multiple capabilities including:
             - Airbnb search for accommodations and listings
@@ -186,16 +197,26 @@ if __name__ == "__main__":
         default=os.getenv("OPENROUTER_API_KEY"),
         help="OpenRouter API key (env: OPENROUTER_API_KEY)",
     )
+    parser.add_argument(
+        "--mem0-api-key",
+        type=str,
+        default=os.getenv("MEM0_API_KEY"),
+        help="Mem0 API key (env: MEM0_API_KEY)",
+    )
     args = parser.parse_args()
 
-    # Set global model name and API key
+    # Set global model name and API keys
     model_name = args.model
     api_key = args.api_key
+    mem0_api_key = args.mem0_api_key
 
     if not api_key:
         raise ValueError("OPENROUTER_API_KEY required")
+    if not mem0_api_key:
+        raise ValueError("MEM0_API_KEY required. Get your API key from: https://app.mem0.ai/dashboard/api-keys")
 
     print(f"🤖 Using model: {model_name}")
+    print(f"🧠 Mem0 memory enabled")
 
     # Load configuration
     config = load_config()

@@ -1,0 +1,32 @@
+FROM ghcr.io/astral-sh/uv:alpine AS python-builder
+
+ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
+ENV UV_PYTHON_INSTALL_DIR=/python
+ENV UV_PYTHON_PREFERENCE=only-managed
+
+RUN uv python install 3.12
+
+FROM node:22-alpine AS node-base
+
+FROM alpine:3.19
+
+# OCI labels for base image
+LABEL org.opencontainers.image.title="bindu-agent-base"
+LABEL org.opencontainers.image.description="Base image with Python 3.12 and Node.js 22 for Bindu Agent"
+LABEL org.opencontainers.image.authors="raahul dutta <raahul@getbindu.com>"
+LABEL org.opencontainers.image.version="1.0.0"
+
+# Copy Python from python-builder
+COPY --from=python-builder /python /python
+
+# Copy Node.js from node-base
+COPY --from=node-base /usr/local/bin/node /usr/local/bin/
+COPY --from=node-base /usr/local/lib/node_modules /usr/local/lib/node_modules
+RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm && \
+    ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
+
+# Add Python to PATH
+ENV PATH="/python/bin:$PATH"
+
+# Set working directory
+WORKDIR /app

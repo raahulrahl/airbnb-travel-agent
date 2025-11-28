@@ -44,7 +44,19 @@ make install
 
 This will also generate your `uv.lock` file
 
-### 3. Run the pre-commit hooks
+### 3. Configure API Keys
+
+Copy the example environment file and add your API keys:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and add your API keys:
+- **OPENROUTER_API_KEY**: Get from [OpenRouter](https://openrouter.ai/keys)
+- **MEM0_API_KEY**: Get from [Mem0 Dashboard](https://app.mem0.ai/dashboard/api-keys)
+
+### 4. Run the pre-commit hooks
 
 Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
 
@@ -52,7 +64,7 @@ Initially, the CI/CD pipeline might be failing due to formatting issues. To reso
 uv run pre-commit run -a
 ```
 
-### 4. Commit the changes
+### 5. Commit the changes
 
 Lastly, commit the changes made by the two steps above to your repository.
 

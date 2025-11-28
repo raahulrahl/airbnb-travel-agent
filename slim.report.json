@@ -1,0 +1,49 @@
+{
+  "document": "doc.report.command",
+  "version": "ov/command/slim/1.1",
+  "engine": "darwin/arm64|Aurora|1.41.7|latest|latest",
+  "containerized": false,
+  "host_distro": {
+    "name": "",
+    "version": "",
+    "display_name": "other"
+  },
+  "type": "slim",
+  "state": "error",
+  "target_reference": "bindul-agent-base",
+  "system": {
+    "type": "",
+    "release": "",
+    "distro": {
+      "name": "",
+      "version": "",
+      "display_name": ""
+    }
+  },
+  "source_image": {
+    "identity": {
+      "id": ""
+    },
+    "size": 0,
+    "size_human": "",
+    "create_time": "",
+    "architecture": "",
+    "container_entry": {
+      "exe_path": ""
+    }
+  },
+  "minified_image_size": 0,
+  "minified_image_size_human": "",
+  "minified_image": "",
+  "minified_image_id": "",
+  "minified_image_digest": "",
+  "minified_image_has_data": false,
+  "minified_by": 0,
+  "artifact_location": "",
+  "container_report_name": "",
+  "seccomp_profile_name": "",
+  "apparmor_profile_name": "",
+  "image_stack": null,
+  "image_created": false,
+  "image_build_engine": ""
+}
