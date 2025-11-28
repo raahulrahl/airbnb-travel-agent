@@ -25,6 +25,7 @@ from typing import Any
 from agno.agent import Agent
 from agno.models.openrouter import OpenRouter
 from agno.tools.mcp import MultiMCPTools
+from agno.tools.mem0 import Mem0Tools
 from bindu.penguin.bindufy import bindufy
 
 # Global MCP tools instances
@@ -84,8 +85,13 @@ async def initialize_agent():
 
     agent = Agent(
         name="Airbnb Bindu Agent",
+        description=(
+            "You are an intelligent AI-powered travel assistant specializing in Airbnb accommodations. "
+            "You help users discover and plan their perfect stays by searching real-time Airbnb listings, "
+            "providing location insights via Google Maps, and remembering user preferences for personalized recommendations."
+        ),
         model=OpenRouter(id=model_name, api_key=api_key),
-        tools=[mcp_tools],
+        tools=[mcp_tools, Mem0Tools()],
         instructions=dedent("""\
             You are a helpful AI assistant with access to multiple capabilities including:
             - Airbnb search for accommodations and listings
@@ -170,8 +176,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model",
         type=str,
-        default=os.getenv("MODEL_NAME", "x-ai/grok-4.1-fast:free"),
-        help="Model ID to use (default: x-ai/grok-4.1-fast:free, env: MODEL_NAME)",
+        default=os.getenv("MODEL_NAME", "openai/gpt-5-mini"),
+        help="Model ID to use (default: openai/gpt-5-mini, env: MODEL_NAME), if you want you can use any free model: https://openrouter.ai/models?q=free",
     )
 
     parser.add_argument(

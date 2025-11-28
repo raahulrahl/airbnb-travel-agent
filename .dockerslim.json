@@ -1,0 +1,15 @@
+{
+  "include_path": [
+    "/python/**",
+    "/app/**",
+    "/usr/local/bin/node",
+    "/usr/local/bin/npm",
+    "/usr/local/bin/npx",
+    "/usr/local/lib/node_modules/**"
+  ],
+  "include_path_file": [],
+  "preserve_path": [
+    "/python/lib/python3.12/**",
+    "/app/.venv/**"
+  ]
+}
