@@ -77,6 +77,17 @@ git push origin main
 You are now ready to start development on your project!
 The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
 
+### 6. Configure Docker Hub Secrets (Optional)
+
+To enable automatic Docker image builds and pushes to Docker Hub, add the following secret to your GitHub repository:
+
+1. Go to your repository settings → Secrets and variables → Actions
+2. Add a new repository secret:
+   - **Name**: `DOCKERHUB_TOKEN`
+   - **Value**: Your Docker Hub access token (create one at [Docker Hub Security Settings](https://hub.docker.com/settings/security))
+
+The workflow will automatically build and push Docker images when changes are pushed to the `main` branch.
+
 
 <br/>
 

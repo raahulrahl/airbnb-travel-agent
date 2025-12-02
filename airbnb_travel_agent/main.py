@@ -101,12 +101,7 @@ async def initialize_agent():
             "providing location insights via Google Maps, and remembering user preferences for personalized recommendations."
         ),
         model=OpenRouter(id=model_name, api_key=api_key),
-        tools=[
-            mcp_tools,
-            Mem0Tools(
-                api_key=mem0_api_key
-            )
-        ],
+        tools=[mcp_tools, Mem0Tools(api_key=mem0_api_key)],
         instructions=dedent("""\
             You are a helpful AI assistant with access to multiple capabilities including:
             - Airbnb search for accommodations and listings
@@ -220,7 +215,7 @@ if __name__ == "__main__":
         raise ValueError("MEM0_API_KEY required. Get your API key from: https://app.mem0.ai/dashboard/api-keys")
 
     print(f"🤖 Using model: {model_name}")
-    print(f"🧠 Mem0 memory enabled")
+    print("🧠 Mem0 memory enabled")
 
     # Load configuration
     config = load_config()

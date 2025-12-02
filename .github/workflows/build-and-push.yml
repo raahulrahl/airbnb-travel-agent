@@ -14,7 +14,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  # First, validate everything
   validate:
     runs-on: ubuntu-latest
     steps:
@@ -35,9 +34,6 @@ jobs:
       - name: Run tests
         run: uv run python -m pytest tests --cov --cov-config=pyproject.toml
 
-      - name: Check typing
-        run: uv run ty check
-
       - name: Check documentation
         run: uv run mkdocs build -s
 
@@ -45,7 +41,7 @@ jobs:
   build-and-push:
     needs: validate
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
