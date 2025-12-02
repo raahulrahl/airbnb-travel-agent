@@ -27,6 +27,10 @@ from agno.models.openrouter import OpenRouter
 from agno.tools.mcp import MultiMCPTools
 from agno.tools.mem0 import Mem0Tools
 from bindu.penguin.bindufy import bindufy
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Global MCP tools instances
 mcp_tools: MultiMCPTools | None = None

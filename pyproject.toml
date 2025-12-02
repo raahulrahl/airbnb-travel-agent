@@ -7,13 +7,14 @@ readme = "README.md"
 keywords = ['python']
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "bindu==2025.48.6.1",
     "agno>=2.2.0",
     "fastmcp>=2.11.0",
     "requests>=2.31.0",
     "pyperclip>=1.8.0",
     "rich>=13.0.0",
     "mem0ai>=1.0.1",
+    "bindu==2025.49.3",
+    "python-dotenv>=1.0.0",
 ]
 classifiers = [
     "Intended Audience :: Developers",
