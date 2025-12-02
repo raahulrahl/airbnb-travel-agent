@@ -179,8 +179,10 @@ async def initialize_all(env: dict | None = None):
     await initialize_agent()
 
 
-# Bindufy and start the agent server
-if __name__ == "__main__":
+def main():
+    """Main entry point for the Airbnb Travel Agent."""
+    global model_name, api_key, mem0_api_key
+
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="Bindu Agent with MCP Tools")
     parser.add_argument(
@@ -229,3 +231,8 @@ if __name__ == "__main__":
         # Cleanup on exit
         print("\n🧹 Cleaning up...")
         asyncio.run(cleanup_mcp_tools())
+
+
+# Bindufy and start the agent server
+if __name__ == "__main__":
+    main()

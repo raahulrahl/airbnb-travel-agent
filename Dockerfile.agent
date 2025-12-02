@@ -45,4 +45,4 @@ ENV PATH="/app/.venv/bin:$PATH"
 WORKDIR /app
 EXPOSE 3773
 
-CMD ["python", "-m", "airbnb_travel_agent.main"]
+CMD ["python", "-m", "airbnb_travel_agent"]
